@@ -23,8 +23,7 @@ app.engine(
 app.set('view engine', '.hbs');
 
 app.get('/', (req, res) => {
-  res.send('<h1> Starting page</h1>');
-  console.log('starting page');
+  res.render('children/list');
 });
 
 app.use(handleError);
