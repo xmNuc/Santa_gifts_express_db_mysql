@@ -1,1 +1,25 @@
 <h2>Santas children list</h2>
+
+<ul>
+  {{#each childrenList}}
+    <li>
+      <label>
+        {{this.name}}
+
+        <select>
+          <option value=''>Empty</option>
+        </select>
+      </label>
+      <button>Save</button>
+    </li>
+  {{/each}}
+</ul>
+
+<h2>Add child to list</h2>
+<form action=''>
+  <label>
+    Name
+    <input name='name' type='text' />
+  </label>
+  <button>Save</button>
+</form>
