@@ -7,7 +7,8 @@ class GiftRecord {
     if (!obj.name || obj.name.length < 3 || obj.name.length > 55) {
       throw new ValidationError('Gift name should be min 3 max 55 characters.');
     }
-    if (!obj.count || obj.count.length < 1 || obj.count.length > 999999) {
+    console.log(obj.count);
+    if (!obj.count || obj.count < 1 || obj.count > 999999) {
       throw new ValidationError('Gifts should be min 1 max 999999.');
     }
     this.id = obj.id;
