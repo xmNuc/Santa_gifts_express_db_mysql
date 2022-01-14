@@ -9,7 +9,7 @@
         <select>
           <option value=''>Empty</option>
           {{#each ../giftsList}}
-            <option value='{{this.name}}'>{{this.name}}</option>
+            <option value='{{this.id}}'>{{this.name}}</option>
           {{/each}}
         </select>
       </label>
@@ -19,7 +19,7 @@
 </ul>
 
 <h2>Add child to list</h2>
-<form action=''>
+<form action='/child' method="post">
   <label>
     Name
     <input name='name' type='text' />
