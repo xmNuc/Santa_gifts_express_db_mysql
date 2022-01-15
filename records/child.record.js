@@ -30,7 +30,7 @@ class ChildRecord {
     const [results] = await pool.execute(
       'SELECT * FROM `children` ORDER BY `name` ASC'
     );
-    return results;
+    return results.map((obj) => new ChildRecord(obj));
   }
   static async getOne(id) {
     const [results] = await pool.execute(
@@ -44,14 +44,13 @@ class ChildRecord {
 
   async update() {
     await pool.execute(
-      'UPDATE `children`SET `name` = :name, `giftID` = :giftId WHERE `id = :id',
+      'UPDATE `children` SET `name` = :name, `giftId` = :giftId WHERE `id` = :id',
       {
         id: this.id,
         name: this.name,
-        gift: this.giftId,
+        giftId: this.giftId,
       }
     );
-    return this.id;
   }
 }
 

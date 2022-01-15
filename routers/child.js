@@ -33,8 +33,15 @@ childRouter
     const gift =
       req.body.giftId === '' ? null : await GiftRecord.getOne(req.body.giftId);
     // console.log(gift);
+    // console.log(child);
 
-    child.giftId = gift?.id ?? null; //child.giftId = gift === null ? null : gift.id
+    if (gift) {
+      console.log(gift.count);
+    }
+
+    child.giftId = gift?.id ?? null;
+    // child.giftId = gift === null ? null : gift.id;
+    // console.log(child.giftId);
     await child.update();
 
     res.redirect('/child');

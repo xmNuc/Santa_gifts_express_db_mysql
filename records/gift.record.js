@@ -30,7 +30,7 @@ class GiftRecord {
 
   static async listAll() {
     const [results] = await pool.execute('SELECT * FROM `gifts`');
-    return results;
+    return results.map((obj) => new GiftRecord(obj));
   }
   static async getOne(id) {
     const [results] = await pool.execute(
