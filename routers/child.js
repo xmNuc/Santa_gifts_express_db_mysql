@@ -36,7 +36,11 @@ childRouter
     // console.log(child);
 
     if (gift) {
-      console.log(gift.count);
+      if (gift.count <= (await gift.countGivenGifts())) {
+        throw new ValidationError(
+          'This gift isnt available, Santa Clause have to small warehouse'
+        );
+      }
     }
 
     child.giftId = gift?.id ?? null;

@@ -7,7 +7,7 @@ class GiftRecord {
     if (!obj.name || obj.name.length < 3 || obj.name.length > 55) {
       throw new ValidationError('Gift name should be min 3 max 55 characters.');
     }
-    console.log(obj.count);
+    // console.log(obj.count);
     if (!obj.count || obj.count < 1 || obj.count > 999999) {
       throw new ValidationError('Gifts should be min 1 max 999999.');
     }
@@ -40,6 +40,16 @@ class GiftRecord {
       }
     );
     return results.length === 0 ? null : new GiftRecord(results[0]);
+  }
+
+  async countGivenGifts() {
+    const [[{ count }]] = await pool.execute(
+      'SELECT COUNT(*) AS `count` FROM `children` WHERE `giftId` = :id',
+      {
+        id: this.id,
+      }
+    );
+    return count;
   }
 }
 
