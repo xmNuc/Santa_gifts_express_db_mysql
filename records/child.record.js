@@ -32,6 +32,27 @@ class ChildRecord {
     );
     return results;
   }
+  static async getOne(id) {
+    const [results] = await pool.execute(
+      'SELECT * FROM `children` WHERE `id` = :id',
+      {
+        id,
+      }
+    );
+    return results.length === 0 ? null : new ChildRecord(results[0]);
+  }
+
+  async update() {
+    await pool.execute(
+      'UPDATE `children`SET `name` = :name, `giftID` = :giftId WHERE `id = :id',
+      {
+        id: this.id,
+        name: this.name,
+        gift: this.giftId,
+      }
+    );
+    return this.id;
+  }
 }
 
 module.exports = {

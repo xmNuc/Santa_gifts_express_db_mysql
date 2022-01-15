@@ -3,10 +3,11 @@
 <ul>
   {{#each childrenList}}
     <li>
+      <form action="/child/gift/{{this.id}}?_method=PATCH" method="post">
       <label>
         {{this.name}}
 
-        <select>
+        <select name="giftId">
           <option value=''>Empty</option>
           {{#each ../giftsList}}
             <option value='{{this.id}}' {{#if (equals this.id ../giftId)}}selected='selected'{{/if}}>{{this.name}}</option>
@@ -14,6 +15,7 @@
         </select>
       </label>
       <button>Save</button>
+      </form>
     </li>
   {{/each}}
 </ul>
